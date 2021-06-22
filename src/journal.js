@@ -33,8 +33,25 @@ Journal.prototype.consCount = function () {
   return counter;
 };
 Journal.prototype.getTeaser = function () {
-  let teaserArray = [];
   let bodyArray = this.body.split(" ");
-  teaserArray = bodyArray.slice(0,8);
-  return teaserArray.join(" ");
-}
+  let slicePos = 0;
+  if (bodyArray.length >= 8) {
+    slicePos = 8;
+  } else { 
+    slicePos = bodyArray.length;
+  }
+  for (let i=0; i < slicePos; i++) {
+    if (bodyArray[i].includes(".")) {
+      slicePos = i+1;
+    } else {
+    }
+  }
+  let teaserArray = bodyArray.slice(0,slicePos);
+    if (slicePos >= 8) {
+      return (teaserArray.join(" ")+"...");
+
+    }else {
+      return teaserArray.join(" ");
+    }  
+      
+};

@@ -19,15 +19,18 @@ describe('Journal', () => {
     const journal = new Journal("title","body");
     expect(journal.consCount()).toEqual(3);
   });
-  test('it should return the first 8 words of the body', () => {
+  test('it should return the first 8 words of the body with an ellipses', () => {
     const journal = new Journal("title","One two three four five six seven eight nine");
-    expect(journal.getTeaser()).toEqual("One two three four five six seven eight");
+    expect(journal.getTeaser()).toEqual("One two three four five six seven eight...");
   });
   test('it should return the entire body if there are fewer than 8 words', () => {
     const journal = new Journal("title","One two three four");
     expect(journal.getTeaser()).toEqual("One two three four");
   });
+  test('it should return the entire first sentence (and only the first sentence) if it is eight or fewer words', () => {
+    const journal = new Journal("title","One two three four. Five six seven eight nine");
+    expect(journal.getTeaser()).toEqual("One two three four.");
+  });
 });
-
 
 // Create a journaling website where a user can write entries including at least a title and body. Create Entry objects that include a method to return the number of words in the entry. Then, add a separate method (or methods) to return the number of vowels and consonants in each entry. Finally, add a method called getTeaser to return the first sentence of the entry. If the sentence is over 8 words, only display those first 8 words.
