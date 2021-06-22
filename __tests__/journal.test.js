@@ -23,6 +23,10 @@ describe('Journal', () => {
     const journal = new Journal("title","One two three four five six seven eight nine");
     expect(journal.getTeaser()).toEqual("One two three four five six seven eight");
   });
+  test('it should return the entire body if there are fewer than 8 words', () => {
+    const journal = new Journal("title","One two three four");
+    expect(journal.getTeaser()).toEqual("One two three four");
+  });
 });
 
 
